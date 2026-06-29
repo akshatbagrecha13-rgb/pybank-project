@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EliteX Bank — Secure. Smart. Elite.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0A1628;
+      --navy-mid:   #1E3A5F;
+      --navy-light: #2A4F7C;
+      --gold:       #C9A84C;
+      --gold-light: #E8D5A3;
+      --gold-dark:  #A07830;
+      --pearl:      #F8F6F0;
+      --white:      #FFFFFF;
+      --text-muted: #8899AA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--pearl);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 72px;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 44px; height: 44px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      padding: 2px;
+    }
+
+    .nav-brand-text { display: flex; flex-direction: column; }
+    .nav-brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .nav-brand-tag {
+      font-size: 9px; font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 500;
+      color: var(--gold-light);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    .nav-cta {
+      display: flex; gap: 12px;
+    }
+    .btn-outline-gold {
+      padding: 9px 22px;
+      border: 1.5px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--navy); }
+
+    .btn-gold {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s, transform 0.15s;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-gold:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-bg-gradient {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(30, 58, 95, 0.5) 0%, rgba(10, 22, 40, 0) 70%),
+                  linear-gradient(180deg, #0A1628 0%, #0D1E38 50%, #0A1628 100%);
+      z-index: 0;
+    }
+
+    /* subtle star-field dots */
+    .hero-bg-gradient::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+    }
+
+    /* LOGO SECTION */
+    .hero-logo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 48px;
+    }
+
+    /* Outer gold halo — the signature element */
+    .logo-halo {
+      position: absolute; inset: -20px;
+      border-radius: 50%;
+      background: conic-gradient(
+        rgba(201,168,76,0) 0deg,
+        rgba(201,168,76,0.6) 90deg,
+        rgba(232,213,163,0.9) 180deg,
+        rgba(201,168,76,0.6) 270deg,
+        rgba(201,168,76,0) 360deg
+      );
+      animation: halo-spin 6s linear infinite;
+    }
+
+    @keyframes halo-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .logo-halo-inner {
+      position: absolute; inset: -16px;
+      border-radius: 50%;
+      background: var(--navy);
+    }
+
+    .hero-seal {
+      position: relative; z-index: 2;
+      width: 240px; height: 240px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      box-shadow:
+        0 0 0 6px rgba(201,168,76,0.15),
+        0 0 60px rgba(201,168,76,0.2),
+        0 0 120px rgba(201,168,76,0.1);
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 6px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bank {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(14px, 2.5vw, 22px);
+      letter-spacing: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      margin-bottom: 50px;
+      text-transform: uppercase;
+    }
+    .hero-tagline strong { font-weight: 600; color: var(--gold); }
+
+    .hero-cta {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center;
+      margin-bottom: 70px;
+    }
+
+    .btn-hero-primary {
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--navy);
+      font-family: 'Cinzel', serif;
+      font-size: 14px; font-weight: 700;
+      border: none; border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.5); }
+
+    .btn-hero-secondary {
+      padding: 16px 40px;
+      background: rgba(255,255,255,0.05);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 14px; font-weight: 600;
+      border: 1.5px solid rgba(201,168,76,0.5);
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-hero-secondary:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+
+    .btn-hero-admin {
+      padding: 16px 40px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500;
+      border: 1px solid rgba(136,153,170,0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-hero-admin:hover { color: var(--pearl); border-color: rgba(136,153,170,0.6); }
+
+    /* STAT RIBBON */
+    .stat-ribbon {
+      display: flex; flex-wrap: wrap; gap: 0;
+      justify-content: center;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(30,58,95,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-item {
+      flex: 1; min-width: 160px;
+      padding: 24px 32px;
+      text-align: center;
+      border-right: 1px solid rgba(201,168,76,0.15);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Cinzel', serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      margin: 0;
+    }
+
+    /* ── FEATURES ── */
+    .section {
+      padding: 90px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .section-subtitle {
+      font-size: 15px; font-weight: 400;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg, rgba(30,58,95,0.5) 0%, rgba(10,22,40,0.8) 100%);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      font-size: 36px; margin-bottom: 18px;
+      display: block;
+    }
+    .feature-name {
+      font-family: 'Cinzel', serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 13px; font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── PAYMENT FEATURES ── */
+    .payment-section {
+      background: linear-gradient(135deg, rgba(30,58,95,0.3) 0%, rgba(10,22,40,0.9) 100%);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 90px 40px;
+    }
+
+    .payment-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .payment-card {
+      background: rgba(10,22,40,0.6);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: block;
+    }
+    .payment-card:hover {
+      background: rgba(30,58,95,0.5);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .payment-card-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+    .payment-card-name {
+      font-size: 13px; font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── AI SECTION ── */
+    .ai-section { padding: 90px 40px; }
+    .ai-inner { max-width: 1200px; margin: 0 auto; }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .ai-card {
+      background: linear-gradient(145deg, rgba(30,58,95,0.4) 0%, rgba(10,22,40,0.7) 100%);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .ai-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--navy);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+    .ai-card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .ai-card-desc {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 20px;
+    }
+
+    /* Score bar */
+    .score-bar-wrap { margin-top: 8px; }
+    .score-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .score-bar-bg {
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px; height: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%; border-radius: 100px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    }
+
+    /* Fraud alert item */
+    .alert-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .alert-item:last-child { border-bottom: none; }
+    .alert-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-red { background: #FF4D4D; box-shadow: 0 0 6px #FF4D4D; }
+    .dot-yellow { background: #FFB800; box-shadow: 0 0 6px #FFB800; }
+    .dot-green { background: #00C48C; box-shadow: 0 0 6px #00C48C; }
+    .alert-text { font-size: 13px; color: var(--pearl); }
+    .alert-time { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+
+    /* ── TRUST SECTION ── */
+    .trust-section {
+      padding: 80px 40px;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .trust-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .trust-card {
+      background: rgba(30,58,95,0.2);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 14px;
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .trust-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .trust-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--gold-light); margin-bottom: 8px;
+    }
+    .trust-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(6, 14, 26, 0.95);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 60px 40px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo-row { display: flex; align-items: center; gap: 12px; }
+    .footer-logo {
+      width: 48px; height: 48px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+    }
+    .footer-brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 20px; font-weight: 700; color: var(--gold);
+      letter-spacing: 2px;
+    }
+    .footer-brand-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-col-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
+    .footer-badges { display: flex; gap: 12px; }
+    .badge {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted);
+      border: 1px solid rgba(136,153,170,0.25);
+      padding: 4px 10px; border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* MOBILE NAV TOGGLE PLACEHOLDER */
+    .nav-hamburger { display: none; font-size: 22px; color: var(--gold); cursor: pointer; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+
+      .ai-grid { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+
+      .section { padding: 60px 20px; }
+      .payment-section { padding: 60px 20px; }
+      .ai-section { padding: 60px 20px; }
+      .trust-section { padding: 60px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-seal { width: 180px; height: 180px; }
+      .stat-item { padding: 16px 20px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      nav { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="assets/elitex-logo.png" alt="EliteX Seal" class="nav-logo"/>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">ELITE X</span>
+        <span class="nav-brand-tag">Premium Banking</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#payments">Payments</a></li>
+      <li><a href="#ai">AI Banking</a></li>
+      <li><a href="#trust">Security</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="login.html" class="btn-outline-gold">Login</a>
+      <a href="register.html" class="btn-gold">Open Account</a>
+    </div>
+
+    <span class="nav-hamburger">☰</span>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-eyebrow">✦ America's Most Trusted Digital Bank</span>
+
+      <!-- LOGO with halo -->
+      <div class="hero-logo-wrap">
+        <div class="logo-halo"></div>
+        <div class="logo-halo-inner"></div>
+        <img
+          src="assets/elitex-logo.png"
+          alt="EliteX Bank Official Seal"
+          class="hero-seal"
+        />
+      </div>
+
+      <h1 class="hero-title"><span>ELITE X</span></h1>
+      <p class="hero-bank">Bank &nbsp;·&nbsp; Est. 2020</p>
+      <p class="hero-tagline">
+        <strong>Secure.</strong> &nbsp;Smart.&nbsp; <strong>Elite.</strong>
+      </p>
+
+      <div class="hero-cta">
+        <a href="login.html" class="btn-hero-primary">Login to Account</a>
+        <a href="register.html" class="btn-hero-secondary">Open Free Account</a>
+        <a href="admin_login.html" class="btn-hero-admin">⚙ Admin Portal</a>
+      </div>
+
+      <!-- STAT RIBBON -->
+      <div class="stat-ribbon">
+        <div class="stat-item">
+          <div class="stat-value">2.4M+</div>
+          <div class="stat-label">Active Customers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$18B</div>
+          <div class="stat-label">Assets Managed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">99.99%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">0.0001%</div>
+          <div class="stat-label">Fraud Rate</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════ FEATURES ══════════ -->
+  <section id="features">
+    <div class="section">
+      <p class="section-eyebrow">Why EliteX</p>
+      <h2 class="section-title">Banking Reimagined for the Elite</h2>
+      <p class="section-subtitle">Every product is engineered for speed, security, and sophistication — built on next-generation financial infrastructure.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🏦</span>
+          <div class="feature-name">Instant Transfers</div>
+          <div class="feature-desc">Send money to any bank in under 2 seconds via IMPS, NEFT, RTGS, and UPI — 24/7, zero downtime.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <div class="feature-name">Military-Grade Security</div>
+          <div class="feature-desc">256-bit AES encryption, biometric authentication, and real-time fraud detection powered by AI.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📈</span>
+          <div class="feature-name">Smart Savings</div>
+          <div class="feature-desc">Automatically sweep idle balances into high-yield accounts. Earn up to 7.5% APY with zero lock-in.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <div class="feature-name">AI Financial Advisor</div>
+          <div class="feature-desc">Personalized spending insights, investment suggestions, and loan recommendations powered by ML.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💳</span>
+          <div class="feature-name">Virtual Premium Cards</div>
+          <div class="feature-desc">Instant virtual Visa/Mastercard with dynamic CVV, spend limits, and real-time notifications.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎁</span>
+          <div class="feature-name">Cashback & Rewards</div>
+          <div class="feature-desc">Earn Gold Points on every transaction. Redeem for flights, hotels, or statement credit.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════ PAYMENTS ══════════ -->
+  <section id="payments" class="payment-section">
+    <div class="payment-inner">
+      <p class="section-eyebrow">Pay Everything</p>
+      <h2 class="section-title">One App. All Payments.</h2>
+      <p class="section-subtitle" style="margin-bottom: 40px;">From utility bills to investments — EliteX powers every financial action you need.</p>
+
+      <div class="payment-grid">
+        <a href="upi.html" class="payment-card">
+          <span class="payment-card-icon">⚡</span>
+          <div class="payment-card-name">UPI Pay</div>
+        </a>
+        <a href="qr_payment.html" class="payment-card">
+          <span class="payment-card-icon">📱</span>
+          <div class="payment-card-name">QR Payment</div>
+        </a>
+        <a href="mobile_recharge.html" class="payment-card">
+          <span class="payment-card-icon">📡</span>
+          <div class="payment-card-name">Mobile Recharge</div>
+        </a>
+        <a href="bill_payments.html" class="payment-card">
+          <span class="payment-card-icon">🧾</span>
+          <div class="payment-card-name">Bill Payments</div>
+        </a>
+        <a href="transfer.html" class="payment-card">
+          <span class="payment-card-icon">🏛️</span>
+          <div class="payment-card-name">Bank Transfer</div>
+        </a>
+        <a href="loans.html" class="payment-card">
+          <span class="payment-card-icon">💰</span>
+          <div class="payment-card-name">Instant Loans</div>
+        </a>
+        <a href="autopay.html" class="payment-card">
+          <span class="payment-card-icon">🔄</span>
+          <div class="payment-card-name">AutoPay</div>
+        </a>
+        <a href="rewards.html" class="payment-card">
+          <span class="payment-card-icon">🏆</span>
+          <div class="payment-card-name">Rewards</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════ AI BANKING ══════════ -->
+  <section id="ai" class="ai-section">
+    <div class="ai-inner">
+      <p class="section-eyebrow">AI-Powered Banking</p>
+      <h2 class="section-title">Your Money, Intelligently Managed</h2>
+      <p class="section-subtitle">EliteX uses cutting-edge machine learning to protect, grow, and optimize your finances automatically.</p>
+
+      <div class="ai-grid">
+        <!-- Financial Health Score -->
+        <div class="ai-card">
+          <span class="ai-badge">AI Feature</span>
+          <div class="ai-card-title">Financial Health Score</div>
+          <div class="ai-card-desc">Real-time scoring across savings rate, debt ratio, spending habits, and investment diversity.</div>
+
+          <div class="score-bar-wrap">
+            <div class="score-bar-label"><span>Credit Score</span><span style="color:var(--gold)">820 / 900</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 91%;"></div></div>
+
+            <div class="score-bar-label"><span>Savings Rate</span><span style="color:#00C48C">Excellent</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 78%; background: linear-gradient(90deg,#00A36C,#00C48C);"></div></div>
+
+            <div class="score-bar-label"><span>Debt Ratio</span><span style="color:#FFB800">Moderate</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 42%; background: linear-gradient(90deg,#CC8800,#FFB800);"></div></div>
+
+            <div class="score-bar-label"><span>Overall Health</span><span style="color:var(--gold)">87 / 100</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 87%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Fraud Alerts -->
+        <div class="ai-card">
+          <span class="ai-badge">AI Shield</span>
+          <div class="ai-card-title">Real-Time Fraud Protection</div>
+          <div class="ai-card-desc">AI monitors every transaction for anomalies and blocks suspicious activity before money moves.</div>
+
+          <div class="alert-item">
+            <div class="alert-dot dot-green"></div>
+            <div class="alert-text">Account login from your device — verified</div>
+            <div class="alert-time">2 min ago</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot dot-yellow"></div>
+            <div class="alert-text">Large transfer $4,800 — waiting confirmation</div>
+            <div class="alert-time">14 min ago</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot dot-red"></div>
+            <div class="alert-text">Blocked: Unknown merchant in foreign IP</div>
+            <div class="alert-time">1 hr ago</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot dot-green"></div>
+            <div class="alert-text">UPI payment to John D. — low risk score</div>
+            <div class="alert-time">3 hrs ago</div>
+          </div>
+        </div>
+
+        <!-- Expense Analyzer -->
+        <div class="ai-card">
+          <span class="ai-badge">Analytics</span>
+          <div class="ai-card-title">Expense Breakdown</div>
+          <div class="ai-card-desc">See exactly where your money goes every month and get actionable savings tips.</div>
+
+          <div class="score-bar-wrap" style="margin-top: 6px;">
+            <div class="score-bar-label"><span>🍔 Food & Dining</span><span>$1,240</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 65%;"></div></div>
+
+            <div class="score-bar-label"><span>🚗 Transport</span><span>$580</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 30%; background: linear-gradient(90deg,#2A4F7C,#4A8FCC);"></div></div>
+
+            <div class="score-bar-label"><span>🛍️ Shopping</span><span>$2,100</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 80%; background: linear-gradient(90deg,#7A2B8C,#C248E8);"></div></div>
+
+            <div class="score-bar-label"><span>🏥 Healthcare</span><span>$320</span></div>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width: 18%; background: linear-gradient(90deg,#006644,#00C48C);"></div></div>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="ai-card">
+          <span class="ai-badge">Smart Advice</span>
+          <div class="ai-card-title">AI Recommendations</div>
+          <div class="ai-card-desc">Personalized financial tips generated from your spending patterns and financial goals.</div>
+
+          <div class="alert-item" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div class="alert-dot" style="background:var(--gold); box-shadow:0 0 6px var(--gold);"></div>
+            <div class="alert-text">Invest $500/month to retire at 55 comfortably</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot" style="background:#00C48C; box-shadow:0 0 6px #00C48C;"></div>
+            <div class="alert-text">Switch to EliteX Saver for +2.3% extra yield</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot" style="background:#4A8FCC; box-shadow:0 0 6px #4A8FCC;"></div>
+            <div class="alert-text">Pre-approved Personal Loan: $25,000 at 8.9%</div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-dot" style="background:#FFB800; box-shadow:0 0 6px #FFB800;"></div>
+            <div class="alert-text">Reduce dining spend by 20% to save $248/mo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════ TRUST ══════════ -->
+  <section id="trust" class="trust-section">
+    <div class="trust-inner">
+      <p class="section-eyebrow">Your Security Is Our Priority</p>
+      <h2 class="section-title">Built on Trust. Fortified by Technology.</h2>
+      <p class="section-subtitle" style="margin: 0 auto 0; max-width: 500px;">EliteX Bank is regulated, insured, and secured by the most advanced financial-grade infrastructure available.</p>
+
+      <div class="trust-grid">
+        <div class="trust-card">
+          <span class="trust-icon">🛡️</span>
+          <div class="trust-title">FDIC Insured</div>
+          <div class="trust-desc">Deposits insured up to $250,000 per depositor by the Federal Deposit Insurance Corporation.</div>
+        </div>
+        <div class="trust-card">
+          <span class="trust-icon">🔐</span>
+          <div class="trust-title">256-bit Encryption</div>
+          <div class="trust-desc">Every transaction and data point is protected with bank-grade end-to-end encryption.</div>
+        </div>
+        <div class="trust-card">
+          <span class="trust-icon">👁️</span>
+          <div class="trust-title">24/7 Monitoring</div>
+          <div class="trust-desc">AI-powered surveillance flags suspicious activity in milliseconds, around the clock.</div>
+        </div>
+        <div class="trust-card">
+          <span class="trust-icon">✅</span>
+          <div class="trust-title">RBI Compliant</div>
+          <div class="trust-desc">Fully compliant with all federal banking regulations including KYC, AML, and PCI DSS standards.</div>
+        </div>
+        <div class="trust-card">
+          <span class="trust-icon">📋</span>
+          <div class="trust-title">ISO 27001 Certified</div>
+          <div class="trust-desc">Internationally certified information security management — audited annually by third parties.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════ CTA BANNER ══════════ -->
+  <section style="padding: 80px 40px; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);"></div>
+    <div style="position: relative; z-index: 2; max-width: 640px; margin: 0 auto;">
+      <img src="assets/elitex-logo.png" alt="EliteX Seal" style="width: 80px; height: 80px; object-fit: contain; border-radius: 50%; border: 1.5px solid var(--gold); margin-bottom: 28px;"/>
+      <h2 style="font-family: 'Cinzel', serif; font-size: clamp(24px, 4vw, 40px); color: var(--white); margin-bottom: 14px;">Ready to Go Elite?</h2>
+      <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.7;">Join 2.4 million customers who trust EliteX with their financial future. Open your account in under 3 minutes.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="register.html" class="btn-hero-primary">Open Account Free</a>
+        <a href="login.html" class="btn-hero-secondary">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <img src="assets/elitex-logo.png" alt="EliteX Logo" class="footer-logo"/>
+            <span class="footer-brand-name">ELITE X</span>
+          </div>
+          <p class="footer-brand-desc">EliteX Bank — America's premier digital-first banking platform. Secure, smart, and built for the elite.</p>
+          <div style="display: flex; gap: 10px;">
+            <span style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer;">𝕏</span>
+            <span style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer;">in</span>
+            <span style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer;">f</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Banking</div>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="deposit.html">Deposit</a></li>
+            <li><a href="withdraw.html">Withdraw</a></li>
+            <li><a href="transfer.html">Transfer</a></li>
+            <li><a href="transactions.html">Transactions</a></li>
+            <li><a href="loans.html">Loans</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Payments</div>
+          <ul class="footer-links">
+            <li><a href="upi.html">UPI Pay</a></li>
+            <li><a href="qr_payment.html">QR Payment</a></li>
+            <li><a href="mobile_recharge.html">Recharge</a></li>
+            <li><a href="bill_payments.html">Bill Payments</a></li>
+            <li><a href="autopay.html">AutoPay</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Tools</div>
+          <ul class="footer-links">
+            <li><a href="emi_calculator.html">EMI Calculator</a></li>
+            <li><a href="expense_analyzer.html">Expense Analyzer</a></li>
+            <li><a href="financial_health.html">Health Score</a></li>
+            <li><a href="fraud_alerts.html">Fraud Alerts</a></li>
+            <li><a href="cards.html">Virtual Cards</a></li>
+            <li><a href="admin_login.html">Admin Portal</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 EliteX Bank. All rights reserved. Member FDIC. Equal Housing Lender.</div>
+        <div class="footer-badges">
+          <span class="badge">FDIC Insured</span>
+          <span class="badge">PCI DSS</span>
+          <span class="badge">ISO 27001</span>
+          <span class="badge">SSL Secured</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
